@@ -5,7 +5,7 @@
 - **Họ và tên:** Nguyễn Nhân Sâm
 - **MSSV:** 2A202602672
 - **Lớp:** K4-L3A
-- **Repository URL:** https://github.com/Nguyen-Sam-sheep-zzz/K4-L3-DAY13-NguyenNhanSam-2A202602672-Monitoring-LLMOps
+- **Repository URL:** https://github.com/Nguyen-Sam-sheep-zzz/K4-L3A-DAY13-NguyenNhanSam-2A202602672-Monitoring-LLMOps
 - **Commit SHA cuối:** Lấy bằng `git rev-parse HEAD` sau khi commit/push và ghi vào LMS cùng URL repo. SHA không thể tự ghi vào nội dung của chính commit đó.
 - **Langfuse project:** `day13-k4-l3a-02672` theo ảnh chụp; cần xác nhận với Lab Coach nếu quy ước bắt buộc dùng đầy đủ MSSV.
 - **Challenge ID:** `day13-k4-l3a-monitoring-llmops-v1` từ release [Challenge File](https://github.com/VinUni-AI20k/K4-L3A-Day13-Monitoring-LLMOps/releases/tag/Challenge), asset `K4-L3A-challenge.json` cho K4-L3A. File gốc nằm tại `config/challenge.json` và đã được Git ignore.
