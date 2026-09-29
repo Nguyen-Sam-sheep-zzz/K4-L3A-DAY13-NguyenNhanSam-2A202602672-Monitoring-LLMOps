@@ -1,0 +1,4 @@
+Langfuse managed prompt: day13-chat
+Promoted production to version 2.
+Rolled back production to version 1.
+Both states verified via fresh Langfuse SDK get_prompt readback.

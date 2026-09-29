@@ -1,0 +1,6 @@
+Official challenge ID: day13-k4-l3a-monitoring-llmops-v1
+Cohort: K4; incident: rag_slow; affected feature: monitoring
+UTC response window: 2026-09-29T10:00:12.845848Z to 2026-09-29T10:00:23.468266Z
+Affected requests: 5/5 above 2000 ms threshold
+Server latency range: 2651-2652 ms
+Correlation IDs: req-b608e906, req-fd3f7e6a, req-8d0d75ba, req-92bc510e, req-3a6f0cc7

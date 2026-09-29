@@ -1,0 +1,9 @@
+Trace ID: 47947d632e5101e286fa49baeaf94d53
+Correlation ID: req-abd0a755
+Prompt source: langfuse
+Prompt name: day13-chat
+Prompt label: candidate
+Prompt version: 2
+Model: fake-llm
+Usage: {'input': 55, 'output': 178, 'total': 233}
+Cost: {'total': 0.002835}

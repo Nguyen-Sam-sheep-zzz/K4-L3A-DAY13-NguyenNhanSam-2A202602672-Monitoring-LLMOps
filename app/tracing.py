@@ -24,6 +24,10 @@ except ImportError:  # pragma: no cover - chỉ dùng khi chưa cài requirement
         def update_current_generation(self, **kwargs: Any) -> None:
             return None
 
+        @contextmanager
+        def start_as_current_observation(self, **kwargs: Any):
+            yield None
+
     def get_client():
         return _DummyClient()
 
@@ -40,3 +44,13 @@ def tracing_enabled() -> bool:
     return LANGFUSE_SDK_AVAILABLE and bool(
         os.getenv("LANGFUSE_PUBLIC_KEY") and os.getenv("LANGFUSE_SECRET_KEY")
     )
+
+
+@contextmanager
+def child_observation(client: Any, **kwargs: Any):
+    starter = getattr(client, "start_as_current_observation", None)
+    if not callable(starter):
+        yield None
+        return
+    with starter(**kwargs) as observation:
+        yield observation

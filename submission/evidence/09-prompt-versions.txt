@@ -1,0 +1,4 @@
+Langfuse managed prompt: day13-chat
+Version 1: baseline; template preserves feature/docs/message
+Version 2: candidate; adds concise-answer instruction
+Verified via Langfuse SDK readback.

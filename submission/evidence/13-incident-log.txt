@@ -1,0 +1,24 @@
+Official challenge response log (sanitized):
+{
+  "service": "api",
+  "latency_ms": 2651,
+  "ttft_ms": 50,
+  "tokens_in": 34,
+  "tokens_out": 127,
+  "cost_usd": 0.002007,
+  "quality_score": 0.8,
+  "tool_name": "retrieval",
+  "tool_success": true,
+  "payload": {
+    "answer_preview": "Không tìm thấy tài liệu chuyên ngành phù hợp. Hãy kiểm tra nguồn dữ liệu trước k..."
+  },
+  "event": "response_sent",
+  "model": "fake-llm",
+  "session_id": "k4-l3a-challenge-s02",
+  "user_id_hash": "aae0b94055a9",
+  "correlation_id": "req-b608e906",
+  "env": "dev",
+  "feature": "monitoring",
+  "level": "info",
+  "ts": "2026-09-29T10:00:12.845848Z"
+}

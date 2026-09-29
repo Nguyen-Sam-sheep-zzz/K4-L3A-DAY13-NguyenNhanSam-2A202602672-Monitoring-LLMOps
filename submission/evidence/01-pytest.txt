@@ -1,0 +1,12 @@
+.............................                                            [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\_pytest\cacheprovider.py:475
+  C:\Users\SAM\IdeaProjects\VinUniAIThucChien\Lap13\K4-L3-DAY13-NguyenNhanSam-2A202602672-Monitoring-LLMOps\.venv\Lib\site-packages\_pytest\cacheprovider.py:475: PytestCacheWarning: could not create cache path C:\Users\SAM\IdeaProjects\VinUniAIThucChien\Lap13\K4-L3-DAY13-NguyenNhanSam-2A202602672-Monitoring-LLMOps\.pytest_cache\v\cache\nodeids: [WinError 5] Access is denied: 'C:\\Users\\SAM\\IdeaProjects\\VinUniAIThucChien\\Lap13\\K4-L3-DAY13-NguyenNhanSam-2A202602672-Monitoring-LLMOps\\.pytest_cache\\v\\cache'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+.venv\Lib\site-packages\_pytest\stepwise.py:51
+  C:\Users\SAM\IdeaProjects\VinUniAIThucChien\Lap13\K4-L3-DAY13-NguyenNhanSam-2A202602672-Monitoring-LLMOps\.venv\Lib\site-packages\_pytest\stepwise.py:51: PytestCacheWarning: could not create cache path C:\Users\SAM\IdeaProjects\VinUniAIThucChien\Lap13\K4-L3-DAY13-NguyenNhanSam-2A202602672-Monitoring-LLMOps\.pytest_cache\v\cache\stepwise: [WinError 5] Access is denied: 'C:\\Users\\SAM\\IdeaProjects\\VinUniAIThucChien\\Lap13\\K4-L3-DAY13-NguyenNhanSam-2A202602672-Monitoring-LLMOps\\.pytest_cache\\v\\cache'
+    session.config.cache.set(STEPWISE_CACHE_DIR, [])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+29 passed, 2 warnings in 2.93s

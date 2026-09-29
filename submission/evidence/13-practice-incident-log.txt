@@ -1,0 +1,24 @@
+Practice incident log (sanitized):
+{
+  "service": "api",
+  "latency_ms": 4827,
+  "ttft_ms": 50,
+  "tokens_in": 33,
+  "tokens_out": 90,
+  "cost_usd": 0.001449,
+  "quality_score": 0.8,
+  "tool_name": "retrieval",
+  "tool_success": true,
+  "payload": {
+    "answer_preview": "Metrics phát hiện triệu chứng và thời điểm sự cố. Logs xác định request bị ảnh h..."
+  },
+  "event": "response_sent",
+  "feature": "qa",
+  "session_id": "demo-incident-2",
+  "env": "dev",
+  "model": "fake-llm",
+  "correlation_id": "req-7e501e84",
+  "user_id_hash": "21904873e603",
+  "level": "info",
+  "ts": "2026-09-29T08:27:40.082747Z"
+}

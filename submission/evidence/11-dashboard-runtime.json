@@ -1,0 +1,15 @@
+{
+  "traffic": 25,
+  "rate_per_minute": 0.417,
+  "latency_p50": 459.0,
+  "latency_p95": 4827.0,
+  "latency_p99": 9819.0,
+  "ttft_p95": 50.0,
+  "error_rate_pct": 0.0,
+  "error_breakdown": {},
+  "retrieval_success_rate_pct": 100.0,
+  "total_cost_usd": 0.049272,
+  "tokens_in_total": 859.0,
+  "tokens_out_total": 3113.0,
+  "quality_avg": 0.824
+}

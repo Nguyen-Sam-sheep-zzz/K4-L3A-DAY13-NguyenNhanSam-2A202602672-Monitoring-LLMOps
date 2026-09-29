@@ -1,0 +1,10 @@
+Official challenge Langfuse trace ID: 0ca3b57f44aae866066af3af1b1bf959
+Correlation ID: req-b608e906
+Root: lab-agent-run (1b23e3aef00a3a27)
+Prompt source: langfuse
+Prompt name/label/version: day13-chat/production/1
+Child: llm-generation; parent=1b23e3aef00a3a27; latency_s=0.151
+Model: fake-llm
+Usage: {'input': 34, 'output': 127, 'total': 161}
+Cost: {'total': 0.002007}
+Child: retrieval; parent=1b23e3aef00a3a27; latency_s=2.501

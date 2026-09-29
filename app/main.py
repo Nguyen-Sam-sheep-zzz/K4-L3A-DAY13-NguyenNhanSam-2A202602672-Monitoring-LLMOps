@@ -1,14 +1,18 @@
 from __future__ import annotations
 
 import os
+import json
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from structlog.contextvars import bind_contextvars
 
 from .agent import LabAgent
 from .incidents import disable, enable, status
+from . import logging_config
+from .demo_ui import demo_page
+from .demo_data import summarize_logs
 from .logging_config import configure_logging, get_logger
 from .metrics import record_error, snapshot
 from .middleware import CorrelationIdMiddleware
@@ -46,11 +50,39 @@ async def metrics() -> dict:
     return snapshot()
 
 
+@app.get("/demo", response_class=HTMLResponse)
+async def demo() -> HTMLResponse:
+    return HTMLResponse(demo_page())
+
+
+@app.get("/demo/summary")
+async def demo_summary() -> dict:
+    records: list[dict] = []
+    log_path = logging_config.LOG_PATH
+    if log_path.exists():
+        for line in log_path.read_text(encoding="utf-8").splitlines():
+            try:
+                record = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            records.append(logging_config.scrub_event(None, "info", record))
+    return {
+        "metrics": summarize_logs(records),
+        "recent_logs": [record for record in records if record.get("service") == "api"][-30:],
+        "tracing_enabled": tracing_enabled(),
+        "langfuse_base_url": os.getenv("LANGFUSE_BASE_URL", "https://cloud.langfuse.com"),
+    }
+
+
 @app.post("/chat", response_model=ChatResponse)
 async def chat(request: Request, body: ChatRequest) -> ChatResponse:
-    # TODO: Enrich logs with request context (user_id_hash, session_id, feature, model, env)
-    # bind_contextvars(...)
-    
+    bind_contextvars(
+        user_id_hash=hash_user_id(body.user_id),
+        session_id=body.session_id,
+        feature=body.feature,
+        model=agent.model,
+        env=os.getenv("APP_ENV", "dev"),
+    )
     log.info(
         "request_received",
         service="api",

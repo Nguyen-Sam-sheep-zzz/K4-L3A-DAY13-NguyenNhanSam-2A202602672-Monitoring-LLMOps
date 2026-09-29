@@ -1,0 +1,78 @@
+[
+  {
+    "service": "api",
+    "payload": {
+      "message_preview": "Contact [REDACTED_EMAIL] or [REDACTED_PHONE_VN]. CCCD [REDACTED_CCCD]. Card [RED..."
+    },
+    "event": "request_received",
+    "model": "fake-llm",
+    "session_id": "pii-demo-session",
+    "correlation_id": "req-195dc932",
+    "user_id_hash": "8fc1b9a78e3b",
+    "feature": "qa",
+    "env": "dev",
+    "level": "info",
+    "ts": "2026-09-29T08:32:47.381377Z"
+  },
+  {
+    "service": "api",
+    "latency_ms": 1411,
+    "ttft_ms": 50,
+    "tokens_in": 42,
+    "tokens_out": 139,
+    "cost_usd": 0.002211,
+    "quality_score": 0.8,
+    "tool_name": "retrieval",
+    "tool_success": true,
+    "payload": {
+      "answer_preview": "Không tìm thấy tài liệu chuyên ngành phù hợp. Hãy kiểm tra nguồn dữ liệu trước k..."
+    },
+    "event": "response_sent",
+    "model": "fake-llm",
+    "session_id": "pii-demo-session",
+    "correlation_id": "req-195dc932",
+    "user_id_hash": "8fc1b9a78e3b",
+    "feature": "qa",
+    "env": "dev",
+    "level": "info",
+    "ts": "2026-09-29T08:32:49.425266Z"
+  },
+  {
+    "service": "api",
+    "payload": {
+      "message_preview": "Card [REDACTED_CREDIT_CARD] for a test."
+    },
+    "event": "request_received",
+    "model": "fake-llm",
+    "session_id": "pii-demo-session",
+    "correlation_id": "req-596bc320",
+    "user_id_hash": "8fc1b9a78e3b",
+    "feature": "qa",
+    "env": "dev",
+    "level": "info",
+    "ts": "2026-09-29T08:33:32.217618Z"
+  },
+  {
+    "service": "api",
+    "latency_ms": 151,
+    "ttft_ms": 50,
+    "tokens_in": 29,
+    "tokens_out": 114,
+    "cost_usd": 0.001797,
+    "quality_score": 0.8,
+    "tool_name": "retrieval",
+    "tool_success": true,
+    "payload": {
+      "answer_preview": "Không tìm thấy tài liệu chuyên ngành phù hợp. Hãy kiểm tra nguồn dữ liệu trước k..."
+    },
+    "event": "response_sent",
+    "model": "fake-llm",
+    "session_id": "pii-demo-session",
+    "correlation_id": "req-596bc320",
+    "user_id_hash": "8fc1b9a78e3b",
+    "feature": "qa",
+    "env": "dev",
+    "level": "info",
+    "ts": "2026-09-29T08:33:32.370748Z"
+  }
+]

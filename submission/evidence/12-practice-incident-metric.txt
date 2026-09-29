@@ -1,0 +1,4 @@
+Practice scenario: rag_slow
+Affected request latency: 4827 ms
+Threshold: 3000 ms
+Correlation ID: req-7e501e84

@@ -34,6 +34,22 @@ Sau lab, bạn có thể:
 
 ## Bắt đầu nhanh
 
+### Demo thuyết trình
+
+Sau khi cấu hình `.env`, chạy API (terminal 1):
+
+```powershell
+python -m uvicorn app.main:app --reload --env-file .env
+```
+
+Giữ terminal này mở. Truy cập [http://127.0.0.1:8000/demo](http://127.0.0.1:8000/demo) để gửi câu hỏi, xem sáu panel từ `data/logs.jsonl`, đọc correlation ID và thực hành incident. Mở Langfuse Cloud để xem trace waterfall và prompt versions thật. Terminal 2 tạo 10 request mẫu:
+
+```powershell
+python scripts/load_test.py
+```
+
+`FakeLLM` chỉ mô phỏng model: token và cost là số liệu ước tính cho lab, không phải hóa đơn provider. Dashboard demo đọc log của **60 phút gần nhất** và tự làm mới mỗi 30 giây. Giao diện incident là practice; challenge chính thức vẫn dùng file riêng do Lab Coach cấp. Xem [kịch bản thuyết trình](docs/DEMO_PRESENTATION.md) để trình bày.
+
 Windows PowerShell:
 
 ```powershell

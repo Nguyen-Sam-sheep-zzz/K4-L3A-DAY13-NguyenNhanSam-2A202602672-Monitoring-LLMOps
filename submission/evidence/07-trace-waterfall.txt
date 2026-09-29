@@ -1,0 +1,5 @@
+Trace ID: 47947d632e5101e286fa49baeaf94d53
+Correlation ID: req-abd0a755
+Root: lab-agent-run (9883ac8cda77b449)
+  Child: retrieval (eaa7a2e6e7888b19); parent=9883ac8cda77b449
+  Child: llm-generation (5107d9667ac5de8f); parent=9883ac8cda77b449

@@ -1,0 +1,5 @@
+Practice incident Langfuse trace ID: 2844258f57931b1cc379355076f1226e
+Correlation ID: req-7e501e84
+Root: lab-agent-run
+Child: llm-generation; parent=ef1f222e9030f32e; latency=0.151
+Child: retrieval; parent=ef1f222e9030f32e; latency=2.502

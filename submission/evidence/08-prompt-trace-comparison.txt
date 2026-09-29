@@ -1,0 +1,3 @@
+Same input: Explain monitoring and why metrics, logs, and traces are connected.
+label=baseline; cid=req-4e51cc58; trace_id=261c77b99b7aca51597b19caa66fd4b7; prompt_source=langfuse; prompt_version=1
+label=candidate; cid=req-abd0a755; trace_id=47947d632e5101e286fa49baeaf94d53; prompt_source=langfuse; prompt_version=2
