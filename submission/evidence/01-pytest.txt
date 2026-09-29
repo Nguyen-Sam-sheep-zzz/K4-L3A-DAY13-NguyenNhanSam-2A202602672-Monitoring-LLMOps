@@ -9,4 +9,4 @@
     session.config.cache.set(STEPWISE_CACHE_DIR, [])
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-29 passed, 2 warnings in 2.93s
+29 passed, 2 warnings in 2.97s

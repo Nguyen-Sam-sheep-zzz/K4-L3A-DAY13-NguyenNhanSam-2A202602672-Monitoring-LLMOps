@@ -21,7 +21,7 @@ Luồng điều tra: **Metrics → Logs → Traces → Root cause**. Metrics ch�
 | Nội dung | Baseline | Sau sửa | Giới hạn bằng chứng |
 |---|---:|---:|---|
 | Pytest | 5 failed, 22 passed (output người dùng cung cấp) | 29 passed | [01-pytest.txt](evidence/01-pytest.txt); chạy lại sau commit cuối nếu có thay đổi |
-| Log validator | 30/100 trên 22 record cũ | 100/100 trên 114 record, 51 IDs, 0 PII leak | [02-log-validator.txt](evidence/02-log-validator.txt) |
+| Log validator | 30/100 trên 22 record cũ | 100/100 trên 115 record, 51 IDs, 0 PII leak | [02-log-validator.txt](evidence/02-log-validator.txt) |
 | Dashboard validator | 6/6 | 6/6 | [03-dashboard-validator.txt](evidence/03-dashboard-validator.txt) chỉ kiểm tra YAML contract |
 | Langfuse trace tree | Chưa có child spans | 20 trace hoàn chỉnh được đọc lại qua observations v2 API | Ảnh Cloud vẫn cần chụp |
 | Prompt versions | Chưa có `day13-chat` | v1 `baseline`, v2 `candidate`; `production` promote v2 rồi rollback v1 | Readback qua Langfuse SDK; ảnh Cloud vẫn cần chụp |
@@ -69,7 +69,7 @@ Evidence CP3: [metric](evidence/12-incident-metric.txt), [log](evidence/13-incid
 - **Quyết định:** Giữ log JSONL là nguồn chuẩn của dashboard, còn Langfuse là nguồn trace/prompt. Điều này giúp demo hoạt động khi Langfuse tạm thời không truy cập được, đồng thời `correlation_id` vẫn nối được hai nguồn.
 - **Blocker:** Prompt `day13-chat` ban đầu chưa tồn tại nên trace ghi `local-fallback`. Đã tạo prompt v1/v2, xác minh readback rồi chạy lại workload; hai trace so sánh hiện ghi `prompt_source=langfuse`.
 - **Bài học:** Một API trả HTTP 200 chưa đủ chứng minh hệ thống vận hành tốt. Cần quan sát tail latency, lỗi, cost, dữ liệu nhạy cảm và khả năng truy ngược request đến từng span.
-- **Giới hạn:** Ảnh metadata chứa `correlation_id` trong Langfuse và ảnh lúc `production` ở v2 còn thiếu; ảnh trạng thái rollback về v1 đã có. SHA cuối phải lấy từ remote khi nộp. Thông báo Slack chưa được triển khai. `FakeLLM` không chứng minh hành vi hoặc chi phí của model thật.
+- **Giới hạn:** Ảnh metadata riêng chứa `correlation_id` trong Langfuse còn thiếu; metadata đã có trong readback text, còn ảnh log và trace tree đã nối được bằng trace ID. Ảnh trước/sau rollback production v2 → v1 đã có. SHA cuối phải lấy từ remote khi nộp. Thông báo Slack chưa được triển khai. `FakeLLM` không chứng minh hành vi hoặc chi phí của model thật.
 
 ## 9. Evidence index
 
@@ -93,6 +93,7 @@ Các file text dưới đây chứa readback hoặc dữ liệu runtime thật. 
 | Prompt versions | [09-prompt-versions.txt](evidence/09-prompt-versions.txt) |
 | Ảnh prompt versions | [09-prompt-versions-a.png](evidence/09-prompt-versions-a.png), [09-prompt-versions-b.png](evidence/09-prompt-versions-b.png) |
 | Promote/rollback readback | [10-prompt-rollback.txt](evidence/10-prompt-rollback.txt) |
+| Ảnh trước rollback: production ở v2 | [10-prompt-rollback-before.png](evidence/10-prompt-rollback-before.png) |
 | Ảnh sau rollback: production ở v1 | [10-prompt-rollback-after.png](evidence/10-prompt-rollback-after.png) |
 | Dashboard runtime snapshot | [11-dashboard-runtime.json](evidence/11-dashboard-runtime.json) |
 | Ảnh 6 panel dashboard trước CP3 | [11-dashboard-overview.png](evidence/11-dashboard-overview.png) |
@@ -112,7 +113,7 @@ Các file text dưới đây chứa readback hoặc dữ liệu runtime thật. 
 - [ ] Cập nhật repository URL và commit SHA cuối.
 - [ ] Lưu output pytest và validators trên commit cuối.
 - [x] Có ảnh Langfuse project cá nhân: ≥10 traces, waterfall, v1/v2; không mở trang API Keys.
-- [ ] Chụp thêm root metadata chứa correlation ID và ảnh lúc production ở v2; ảnh sau rollback về v1 đã có.
+- [ ] Chụp thêm root metadata chứa correlation ID; ảnh trước/sau rollback production v2 → v1 đã có.
 - [x] Có ảnh dashboard runtime `/demo` với sáu panel, dữ liệu, 60 phút, đơn vị và threshold dạng chữ.
 - [x] Có ảnh dashboard, log và trace tree đúng phiên CP3; correlation ID trong ảnh Langfuse cần chụp bổ sung để nối trực quan với log.
 - [x] Đã chạy challenge chính thức từ release K4-L3A và tắt incident sau thử nghiệm.
