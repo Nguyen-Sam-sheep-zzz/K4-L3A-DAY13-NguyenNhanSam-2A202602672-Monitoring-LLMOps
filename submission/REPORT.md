@@ -62,7 +62,7 @@ Chạy cùng 5 query ở chế độ bình thường cho **5/5 HTTP 200**, log s
 
 Chuỗi điều tra một request: **metric** 2651 ms > 2000 ms → **log** `response_sent`, `correlation_id=req-b608e906`, timestamp `2026-09-29T10:00:12.845848Z` → **trace** `0ca3b57f44aae866066af3af1b1bf959` cùng correlation ID → child `retrieval` **2.501 s**, child `llm-generation` **0.151 s**. Trace này còn ghi managed prompt `day13-chat/production/v1`, model `fake-llm`, 34 input + 127 output tokens, estimated cost `$0.002007`. Incident cấu hình làm chậm retrieval; span cho thấy đây là thành phần gây tăng thời gian xử lý. So với 151–152 ms baseline, mức tăng latency server xấp xỉ 2,5 giây. Fix action: tắt `rag_slow`, xác nhận `/health` báo `false`; trong hệ thống thật cần kiểm tra backend truy xuất tài liệu, timeout và cache. Preventive measure: theo dõi P95 và riêng retrieval span, đặt alert theo ngưỡng, áp dụng timeout/fallback và chạy thử tải đồng thời để phát hiện chờ nối tiếp. Threshold **2000 ms** là của challenge; panel dashboard demo vẫn hiển thị SLO chung **3000 ms** theo `config/dashboard.yaml`.
 
-Evidence CP3: [metric](evidence/12-incident-metric.txt), [log](evidence/13-incident-log.txt), [trace](evidence/14-incident-trace.txt). Đây là readback runtime; ảnh chụp Cloud của **đúng trace CP3** cần bổ sung nếu giảng viên yêu cầu screenshot riêng.
+Evidence CP3: [metric](evidence/12-incident-metric.txt), [log](evidence/13-incident-log.txt), [trace](evidence/14-incident-trace.txt). Đây là readback runtime; theo checklist của `docs/SUBMISSION.md`, vẫn cần ảnh chụp dashboard/log/Langfuse của **đúng phiên CP3**.
 
 ## 8. Quyết định kỹ thuật, blocker và điều học được
 
@@ -109,6 +109,6 @@ Các file text dưới đây chứa readback hoặc dữ liệu runtime thật. 
 - [x] Có ảnh Langfuse project cá nhân: ≥10 traces, waterfall, v1/v2; không mở trang API Keys.
 - [ ] Chụp thêm metadata đầy đủ và promote/rollback trước–sau; ảnh hiện tại chưa chứng minh hết hai mục này.
 - [x] Có ảnh dashboard runtime `/demo` với sáu panel, dữ liệu, 60 phút, đơn vị và threshold dạng chữ.
-- [ ] Chụp ảnh dashboard và trace đúng phiên CP3 nếu yêu cầu minh chứng bằng ảnh; hiện đã có text readback metric/log/trace cùng ID.
+- [ ] Chụp ảnh dashboard, log và trace đúng phiên CP3 theo checklist; hiện đã có text readback metric/log/trace cùng ID.
 - [x] Đã chạy challenge chính thức từ release K4-L3A và tắt incident sau thử nghiệm.
 - [ ] Rà Git để bảo đảm `.env`, secrets, raw PII, `.venv` và `config/challenge.json` không được commit.
