@@ -69,7 +69,7 @@ Evidence CP3: [metric](evidence/12-incident-metric.txt), [log](evidence/13-incid
 - **Quyết định:** Giữ log JSONL là nguồn chuẩn của dashboard, còn Langfuse là nguồn trace/prompt. Điều này giúp demo hoạt động khi Langfuse tạm thời không truy cập được, đồng thời `correlation_id` vẫn nối được hai nguồn.
 - **Blocker:** Prompt `day13-chat` ban đầu chưa tồn tại nên trace ghi `local-fallback`. Đã tạo prompt v1/v2, xác minh readback rồi chạy lại workload; hai trace so sánh hiện ghi `prompt_source=langfuse`.
 - **Bài học:** Một API trả HTTP 200 chưa đủ chứng minh hệ thống vận hành tốt. Cần quan sát tail latency, lỗi, cost, dữ liệu nhạy cảm và khả năng truy ngược request đến từng span.
-- **Giới hạn:** Ảnh metadata riêng chứa `correlation_id` trong Langfuse còn thiếu; metadata đã có trong readback text, còn ảnh log và trace tree đã nối được bằng trace ID. Ảnh trước/sau rollback production v2 → v1 đã có. SHA cuối phải lấy từ remote khi nộp. Thông báo Slack chưa được triển khai. `FakeLLM` không chứng minh hành vi hoặc chi phí của model thật.
+- **Giới hạn:** Ảnh metadata Langfuse, log và trace tree hiện đã nối cùng `correlation_id=req-b608e906`. Ảnh trước/sau rollback production v2 → v1 cũng đã có. SHA cuối lấy từ remote để nộp LMS. Thông báo Slack chưa được triển khai. `FakeLLM` không chứng minh hành vi hoặc chi phí của model thật.
 
 ## 9. Evidence index
 
@@ -104,17 +104,18 @@ Các file text dưới đây chứa readback hoặc dữ liệu runtime thật. 
 | Ảnh challenge log | [13-incident-log.png](evidence/13-incident-log.png) |
 | Challenge trace | [14-incident-trace.txt](evidence/14-incident-trace.txt) |
 | Ảnh challenge trace tree | [14-incident-trace.png](evidence/14-incident-trace.png) |
+| Ảnh challenge trace có correlation ID được lọc | [14-incident-trace-correlation.png](evidence/14-incident-trace-correlation.png) |
 | Practice metric | [12-practice-incident-metric.txt](evidence/12-practice-incident-metric.txt) |
 | Practice log | [13-practice-incident-log.txt](evidence/13-practice-incident-log.txt) |
 | Practice trace | [14-practice-incident-trace.txt](evidence/14-practice-incident-trace.txt) |
 
 ## 10. Checklist trước khi nộp
 
-- [ ] Cập nhật repository URL và commit SHA cuối.
-- [ ] Lưu output pytest và validators trên commit cuối.
+- [x] Cập nhật repository URL; lấy SHA cuối từ remote để nộp LMS.
+- [x] Lưu output pytest và validators trong commit cuối.
 - [x] Có ảnh Langfuse project cá nhân: ≥10 traces, waterfall, v1/v2; không mở trang API Keys.
-- [ ] Chụp thêm root metadata chứa correlation ID; ảnh trước/sau rollback production v2 → v1 đã có.
+- [x] Có ảnh root metadata/tracing chứa `correlation_id`; ảnh trước/sau rollback production v2 → v1 đã có.
 - [x] Có ảnh dashboard runtime `/demo` với sáu panel, dữ liệu, 60 phút, đơn vị và threshold dạng chữ.
-- [x] Có ảnh dashboard, log và trace tree đúng phiên CP3; correlation ID trong ảnh Langfuse cần chụp bổ sung để nối trực quan với log.
+- [x] Có ảnh dashboard, log và trace tree đúng phiên CP3; ảnh trace lọc theo `correlation_id=req-b608e906`.
 - [x] Đã chạy challenge chính thức từ release K4-L3A và tắt incident sau thử nghiệm.
-- [ ] Rà Git để bảo đảm `.env`, secrets, raw PII, `.venv` và `config/challenge.json` không được commit.
+- [x] Đã rà Git; `.env`, secrets, raw PII, `.venv` và `config/challenge.json` không được commit.
